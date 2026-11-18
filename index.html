@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>WSJ Style Demo | صفحه خبری دمو</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Vazirmatn:wght@300;400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+
+<style>
+        :root{
+    --bg: #f4f1ea;
+    --paper: #ffffff;
+    --ink: #111111;
+    --muted: #666666;
+    --border: #ded8cc;
+    --accent: #8b1e1e;
+    --accent-dark: #651515;
+    --shadow: 0 12px 30px rgba(0,0,0,.08);
+    }
+
+    *{
+    box-sizing: border-box;
+    }
+
+    html{
+    scroll-behavior: smooth;
+    }
+
+    body{
+    margin: 0;
+    background: linear-gradient(180deg, #f7f3ec 0%, #efe9df 100%);
+    color: var(--ink);
+    font-family: "Vazirmatn", "Inter", sans-serif;
+    line-height: 1.8;
+    direction: rtl;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{
+    color: inherit;
+    text-decoration: none;
+    }
+
+    a:hover{
+    text-decoration: none;
+    }
+
+    .topbar{
+    background: rgba(17,17,17,.98);
+    color: white;
+    border-bottom: 4px solid var(--accent);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: 0 4px 18px rgba(0,0,0,.15);
+    }
+
+    .topbar__inner{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    }
+
+    .brand{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    }
+
+    .brand__logo{
+    width: 54px;
+    height: 54px;
+    border: 2px solid white;
+    display: grid;
+    place-items: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    flex: 0 0 auto;
+    }
+
+    .brand__text{
+    display: flex;
+    flex-direction: column;
+    }
+
+    .brand__name{
+    font-size: 1.05rem;
+    font-weight: 800;
+    font-family: "Inter", sans-serif;
+    }
+
+    .brand__subtitle{
+    font-size: .78rem;
+    opacity: .8;
+    }
+
+    .nav{
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-family: "Inter", sans-serif;
+    font-size: .95rem;
+    }
+
+    .nav a{
+    opacity: .9;
+    transition: color .2s ease, opacity .2s ease;
+    }
+
+    .nav a:hover{
+    color: #f3d6d6;
+    opacity: 1;
+    }
+
+    .page{
+    max-width: 1200px;
+    margin: 28px auto;
+    padding: 0 24px 48px;
+    }
+
+    .hero{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+    }
+
+    .card{
+    background: var(--paper);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    }
+
+    .hero__main{
+    padding: 30px;
+    }
+
+    .kicker{
+    margin: 0 0 10px;
+    font-family: "Inter", sans-serif , "Samim";
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    color: var(--accent);
+    }
+
+    h1, h2, h3, h4{
+    margin: 0 0 12px;
+    line-height: 1.25;
+    }
+
+    h1{
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-weight: 900;
+    }
+
+    h1 span{
+    display: block;
+    font-size: .58em;
+    color: var(--accent-dark);
+    margin-top: 10px;
+    font-family: "Inter", sans-serif;
+    }
+
+    .lead{
+    color: #2b2b2b;
+    font-size: 1.08rem;
+    max-width: 70ch;
+    }
+
+    .meta{
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    color: var(--muted);
+    font-size: .92rem;
+    border-top: 1px solid var(--border);
+    margin-top: 18px;
+    padding-top: 16px;
+    }
+
+    .hero__quote{
+    margin-top: 22px;
+    padding: 18px 20px;
+    background: #faf7f2;
+    border-right: 4px solid var(--accent);
+    font-style: italic;
+    color: #333;
+    }
+
+    .hero__quote p{
+    margin: 0;
+    }
+
+    .hero__side{
+    display: grid;
+    gap: 22px;
+    }
+
+    .mini{
+    padding: 22px;
+    }
+
+    .mini h2{
+    font-size: 1.25rem;
+    }
+
+    .grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    }
+
+    .story{
+    padding: 22px;
+    }
+
+    .story p{
+    color: #333;
+    margin: 0 0 12px;
+    }
+
+    .story a{
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--accent);
+    font-weight: 700;
+    }
+
+    .story a:hover{
+    color: var(--accent-dark);
+    }
+
+    .bottom{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    margin-top: 22px;
+    }
+
+    .longread, .sidebar{
+    padding: 24px;
+    }
+
+    .sidebar ul{
+    margin: 12px 0 0;
+    padding: 0 18px 0 0;
+    }
+
+    .sidebar li{
+    margin-bottom: 10px;
+    color: #2d2d2d;
+    }
+
+    @media (max-width: 980px){
+    .hero,
+    .grid,
+    .bottom{
+        grid-template-columns: 1fr;
+    }
+
+    .topbar__inner{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    }
+
+    @media (max-width: 640px){
+    .page{
+        padding: 0 14px 36px;
+    }
+
+    .hero__main,
+    .mini,
+    .story,
+    .longread,
+    .sidebar{
+        padding: 18px;
+    }
+
+    .nav{
+        gap: 12px;
+    }
+
+    .brand__logo{
+        width: 46px;
+        height: 46px;
+    }
+
+    .meta{
+        flex-direction: column;
+        gap: 6px;
+    }
+    }
+
+</style>
+<body>
+
+  <!-- Header -->
+  <header class="topbar">
+    <div class="topbar__inner">
+
+      <div class="brand">
+        <div class="brand__logo" aria-label="WSJ Logo">
+          WSJ
+        </div>
+
+        <div class="brand__text">
+          <span class="brand__name">
+            The Wall Street Journal
+          </span>
+
+          <span class="brand__subtitle">
+            Global Markets • Politics • Economy
+          </span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="منوی اصلی">
+        <a href="#">Markets</a>
+        <a href="#">Politics</a>
+        <a href="#">World</a>
+        <a href="#">Opinion</a>
+        <a href="#">Tech</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="page">
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+      <article class="hero__main card">
+        <p class="kicker">
+          POLITICS / MIDDLE EAST / U.S. POLICY
+        </p>
+
+        <h1>
+          فنلاند درگیر طوفان تازه در بازارهای جهانی؛
+
+          <span style="color:#8b1e1e;">
+          New Sanctions Talk Shakes the Market
+          </span>
+        </h1>
+
+        <p class="lead">
+            فنلاند (به فنلاندی: Suomi) با نام رسمی جمهوری فنلاند (به فنلاندی: Suomen tasavalta) کشوری نوردیک در شمال اروپا است. این کشور حدود ۵٫۶ میلیون نفر جمعیت دارد و پایتخت آن شهر هلسینکی اس...
+        </p>
+
+        <div class="meta">
+          <span>By Staff Writer</span>
+          <span>Updated 12 min ago</span>
+          <span>3 min read</span>
+        </div>
+
+        <blockquote class="hero__quote">
+          <p>
+            واکنش فنلاند به اردوغان رئیس جمهور ترکیه
+          </p>
+          <h6 style="color: #f9f2e7 ; font-style: normal;">ای پسر بد ;))</h6>
+        </blockquote>
+      </article>
+
+      <!-- Side News -->
+      <aside class="hero__side">
+
+        <article class="card mini">
+          <p class="kicker">
+            BREAKING
+          </p>
+
+        <h2>
+          طوفان تازه در بازارهای جهانی؛
+
+        </h2>
+        <span style="color:#8b1e1e;">
+        New Sanctions Talk Shakes the Market
+        </span>
+
+          <p>
+            شاخص‌ها نوسان کردند، نفت بالا رفت و معامله‌گران با چهره‌ای شبیه
+            کسی که DNS خراب شده نگاه می‌کردند.
+          </p>
+        </article>
+
+        <article class="card mini">
+          <p class="kicker">
+            ANALYSIS
+          </p>
+
+          <h2>
+            ریسک، credibility و diplomatic signals
+          </h2>
+
+          <p>
+            این بخش برای نمایش سبک editorial طراحی شده و محتوای آن
+            عجیب و واقعی است
+          </p>
+        </article>
+
+      </aside>
+    </section>
+
+    <!-- News Cards -->
+    <section class="grid" aria-label="آخرین اخبار">
+
+      <article class="card story">
+        <p class="kicker">
+          WORLD
+        </p>
+
+        <h3>
+          Tehran–Washington tensions keep traders on edge
+        </h3>
+
+        <p>
+          در یک سناریوی نمایشی، معامله‌گران درباره
+          future of trade flows،
+          currency pressure
+          و ripple effects بر energy markets صحبت می‌کنند.
+        </p>
+
+        <a class="read_more" href="#" aria-label="ادامه خبر Tehran Washington">
+          Read more
+        </a>
+      </article>
+
+      <article class="card story">
+        <p class="kicker">
+          OPINION
+        </p>
+
+        <h3>
+          Sanctions, strategy and the art of bluffing
+        </h3>
+
+        <p>
+          این یک تحلیل سیاسی واقعی است؛
+          تحلیل سیاسی واقعی از ویژگی های بارز امام و این صفحه بود.
+        </p>
+
+        <a class="read_more" href="#" aria-label="ادامه یادداشت تحلیلی">
+          Read more
+        </a>
+      </article>
+
+      <article class="card story">
+        <p class="kicker">
+          ECONOMY
+        </p>
+
+        <h3>
+          بازار انرژی زیر ذره‌بین؛ oil price volatility افزایش یافت
+        </h3>
+
+        <p>
+          ترکیب فارسی و English برای حس واقعی‌تر editorial layout استفاده شده
+          تا شبیه صفحه‌های خبری بین‌المللی باشد.
+        </p>
+
+        <a class="read_more" href="#" aria-label="ادامه خبر بازار انرژی">
+          Read more
+        </a>
+      </article>
+
+
+    </section>
+
+    <!-- ============================================================================================== -->
+    <section class="bottom">
+
+      <article class="card longread">
+        <p class="kicker">
+            <h2 style="color: white ; background-color: #8b1e1e">مهم ترین خبر روز</h2>
+        </p>
+
+        <h2>
+            تحریم های نفتی جدید ترامپ علیه ایران چه نتیجه ای در پی خواهد داشت؟
+        </h2>
+
+        <p>
+            چشم انداز و آینده زندگی در ایران
+        </p>
+
+        <p>
+            آینده ایران به چه شکل خواهد بود؟
+        </p>
+
+        <button id = "vorood"
+        style="height:5vh ; width:20vh ; border-radius: 10px ; text-decoration: black ; font-family:samim ; background-color: rgb(255, 255, 255);">بیشتر بخوانید...</button>
+    </article>
+    </section>
+  </main>
+  <!-- footer سایت -->
+    <footer class="site-footer">
+    <div class="site-footer__inner">
+
+        <div class="site-footer__brand">
+        <div class="site-footer__logo">WSJ</div>
+
+        <div>
+            <h3>The Wall Street Journal</h3>
+            <p>
+            Global Markets • Politics • Economy
+            </p>
+        </div>
+        </div>
+
+        <div class="site-footer__about">
+        <h4>درباره این صفحه</h4>
+        <p>
+            این وب‌سایت یک نسخه‌ برای طراحی رابط کاربری
+            خبرگزاری‌های بین‌المللی است.
+        </p>
+        </div>
+
+        <div class="site-footer__links">
+        <h4>دسترسی سریع</h4>
+        <a href="#">صفحه اصلی</a>
+        <a href="#">آخرین اخبار</a>
+        <a href="#">تحلیل‌ها</a>
+        <a href="#">درباره ما</a>
+        </div>
+
+        <div class="site-footer__contact">
+        <h4>ارتباط با ما</h4>
+        <p>ایمیل: manizargar22@gmail.com</p>
+        <p>شماره تلفن: 09194814469</p>
+        <p>IRAN , Golestan</p>
+
+        <div class="site-footer__social">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Telegram">Telegram</a>
+            <a href="#" aria-label="GitHub">GitHub</a>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="site-footer__bottom">
+        <p>
+        © 2025 News Demo — تمامی حقوق برای من محفوظ است.
+        </p>
+
+        <p>
+        Designed with HTML & CSS
+        </p>
+    </div>
+
+    <style>
+        .site-footer{
+        background: #111;
+        color: #f4f1ea;
+        border-top: 4px solid #8b1e1e;
+        }
+
+        .site-footer__inner{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 38px 24px;
+        display: grid;
+        grid-template-columns: 1.4fr 1.4fr 1fr 1fr;
+        gap: 35px;
+        }
+
+        .site-footer__brand{
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        }
+
+        .site-footer__logo{
+        width: 52px;
+        height: 52px;
+        border: 2px solid #f4f1ea;
+        display: grid;
+        place-items: center;
+        font-family: "Inter", sans-serif;
+        font-weight: 800;
+        letter-spacing: 1px;
+        flex-shrink: 0;
+        }
+
+        .site-footer h3,
+        .site-footer h4{
+        margin: 0 0 10px;
+        line-height: 1.4;
+        }
+
+        .site-footer h3{
+        font-family: "Inter", sans-serif;
+        font-size: 1.05rem;
+        }
+
+        .site-footer h4{
+        color: #e3b7b7;
+        font-size: 1rem;
+        }
+
+        .site-footer p{
+        margin: 0;
+        color: #bdbdbd;
+        font-size: .9rem;
+        line-height: 1.9;
+        }
+
+        .site-footer__brand p{
+        font-family: "Inter", sans-serif;
+        font-size: .76rem;
+        }
+
+        .site-footer__about p{
+        max-width: 280px;
+        }
+
+        .site-footer__links{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+        }
+
+        .site-footer__links a,
+        .site-footer__social a{
+        color: #cfcfcf;
+        font-size: .9rem;
+        transition: color .2s ease, transform .2s ease;
+        }
+
+        .site-footer__links a:hover,
+        .site-footer__social a:hover{
+        color: #e3b7b7;
+        transform: translateX(-4px);
+        }
+
+        .site-footer__contact p{
+        margin-bottom: 4px;
+        }
+
+        .site-footer__social{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 14px;
+        direction: ltr;
+        }
+
+        .site-footer__bottom{
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 16px 24px;
+        border-top: 1px solid #333;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        }
+
+        @media (max-width: 850px){
+        .site-footer__inner{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        }
+
+        @media (max-width: 560px){
+        .site-footer__inner{
+            grid-template-columns: 1fr;
+            padding: 30px 18px;
+            gap: 25px;
+        }
+
+        .site-footer__bottom{
+            padding: 15px 18px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+        }
+    </style>
+    </footer>
+
+
+    <script>
+      const vorood = document.getElementById("vorood");
+      const readMoreButtons = document.getElementsByClassName("read_more");
+
+      vorood.addEventListener("click", function () {
+        window.location.href = "birth_news.html";
+      });
+
+      for (const button of readMoreButtons) {
+        button.addEventListener("click", function (event) {
+          event.preventDefault(); // جلوگیری از رفتن فوری لینک به #
+
+          vorood.style.boxShadow = "0 0 18px 5px rgba(139, 30, 30, 0.55)";
+          vorood.style.backgroundColor = "#8b1e1e";
+          vorood.style.color = "#fff";
+          vorood.style.border = "1px solid #651515";
+          vorood.style.transform = "scale(1.08)";
+          vorood.style.transition = "all 0.3s ease";
+
+          // اسکرول نرم تا دکمه «بیشتر بخوانید»
+          vorood.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
+        });
+      }
+    </script>
+</body>
+</html>
